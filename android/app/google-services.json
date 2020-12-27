@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "645175235943",
+    "project_id": "percentage-calculator-f035f",
+    "storage_bucket": "percentage-calculator-f035f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645175235943:android:4f524561ef641192c40bc2",
+        "android_client_info": {
+          "package_name": "com.imedicalapps.pocketpercentagecalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645175235943-urouugoqrr5b41k7jh2n60c0rg3ps3fg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmjkCYsGzK0ysCSFYP-GPOHwU2dQ7eYkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645175235943-urouugoqrr5b41k7jh2n60c0rg3ps3fg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "645175235943-q8tssv5flraupa1qjn7dce5sdcpclj5h.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.imedicalapps.pocketpercentagecalculator"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

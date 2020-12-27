@@ -1,0 +1,13 @@
+{
+  "appId": "com.imedicalapps.pocketpercentagecalculator",
+  "appName": "Percentage Calculator Plus",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

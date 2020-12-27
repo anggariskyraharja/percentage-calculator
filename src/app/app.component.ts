@@ -21,7 +21,7 @@ export class AppComponent {
   ) {
     this.initializeApp();
     // Initialize AdMob for your Application
-    AdMob.initialize("ca-app-pub-9580735978410872~6712166284");
+    AdMob.initialize("ca-app-pub-9580735978410872~1926434692");
   }
 
   initializeApp() {
