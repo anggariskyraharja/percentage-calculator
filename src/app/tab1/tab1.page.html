@@ -1,0 +1,64 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar >
+    <ion-title >
+      Simple Percentage
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item class="color11">
+    <ion-text>
+      <p>The most commonly used percentage equations</p>
+    </ion-text>
+  </ion-item>
+  <ion-item-divider class="color5"></ion-item-divider>
+  <ion-list>
+    <ion-radio-group  name="equation" value="eq1" (ionChange)="check($event)">
+      <ion-item class="color4">
+        <ion-label >Selection:</ion-label>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>What is A% of B?</p>
+        <ion-radio slot="start" value="eq1" ionselect></ion-radio>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>A is what % of B?</p>
+        <ion-radio slot="start" value="eq2"></ion-radio>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>What is the % difference from A to B?</p>
+        <ion-radio slot="start" value="eq3"></ion-radio>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>A is B% of what?</p>
+        <ion-radio slot="start" value="eq4"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-item-divider class="color5"></ion-item-divider>
+    <ion-item class="color2">
+      <ion-label>A:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num1" placeholder="input number"></ion-input>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label>B:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num2" placeholder="input number"></ion-input>
+    </ion-item>
+    <ion-item class="color1" *ngIf="eq1">
+      <p><b>Result: {{ (num1/100*num2).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" *ngIf="eq2">
+      <p><b>Result: {{ (num1*100/num2).toFixed(1) }}%</b></p>
+    </ion-item>  
+    <ion-item class="color1" *ngIf="eq3">
+      <p><b>Result: {{ ((num2-num1)/num1*100).toFixed(1) }}%</b></p>
+    </ion-item>  
+    <ion-item class="color1" *ngIf="eq4">
+      <p><b>Result: {{ ((num1)/num2*100).toFixed(1) }}</b></p>
+    </ion-item> 
+</ion-list>
+</ion-content>

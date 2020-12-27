@@ -1,0 +1,233 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar >
+    <ion-title >
+      Business Percentage
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item class="color11">
+    <ion-text>
+      <p>The most commonly used percentage equations for business purpose</p>
+    </ion-text>
+  </ion-item>
+  <ion-item-divider class="color5"></ion-item-divider>
+  <ion-list>
+    <ion-radio-group name="equation" value="eq1" (ionChange)="check($event)">
+      <ion-item class="color4">
+        <ion-label >Selection:</ion-label>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>Markup</p>
+        <ion-radio slot="start" value="eq1" ionselect></ion-radio>
+      </ion-item>
+      <ion-item class="color3">
+        <p>Margin</p>
+        <ion-radio slot="start" value="eq2"></ion-radio>
+      </ion-item>
+      <ion-item class="color3">
+        <p>Margin and sales tax</p>
+        <ion-radio slot="start" value="eq3"></ion-radio>
+      </ion-item>
+      <ion-item class="color3">
+        <p>VAT</p>
+        <ion-radio slot="start" value="eq4"></ion-radio>
+      </ion-item>
+      <ion-item class="color3">
+        <p>Sales tax</p>
+        <ion-radio slot="start" value="eq5"></ion-radio>
+      </ion-item>
+      <ion-item class="color3">
+        <p>Compound interest</p>
+        <ion-radio slot="start" value="eq6"></ion-radio>
+      </ion-item>
+      <ion-item class="color3">
+        <p>Cumulative growths</p>
+        <ion-radio slot="start" value="eq7"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-item-divider class="color5"></ion-item-divider>
+
+  <ion-list *ngIf="eq1">
+    <ion-item class="color2">
+      <ion-label >Cost:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num1" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Markup:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num2" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced1">
+      <p><b>Margin: {{ ((num2/100*num1)/(num1+(num2/100*num1))*100).toFixed(1) }}%</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Revenue: {{currency}}{{ (num1+(num2/100*num1)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Profit: {{currency}}{{ (num2/100*num1).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color3">
+      <ion-label>Advanced mode</ion-label>
+      <ion-toggle slot="start" [(ngModel)]="advanced1"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq2">
+    <ion-item class="color2">
+      <ion-label >Cost:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num3" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Margin:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num4" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced2">
+      <p><b>Markup: {{ (10000/(100-num4)-100).toFixed(1) }}%</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Revenue: {{currency}}{{ (num3+((10000/(100-num4)-100)/100*num3)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Profit: {{currency}}{{ ((10000/(100-num4)-100)/100*num3).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color3">
+      <ion-label>Advanced mode</ion-label>
+      <ion-toggle slot="start" [(ngModel)]="advanced2"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq3">
+    <ion-item class="color2">
+      <ion-label >Cost:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num5" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Margin:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num6" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Sales tax:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num7" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color1" >
+      <p><b>Markup: {{ (10000/(100-num6)-100).toFixed(1) }}%</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>My net price: {{currency}}{{ (num5+((10000/(100-num6)-100)/100*num5)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>My gross price: {{currency}}{{ ((100+num7)/100*(num5+((10000/(100-num6)-100)/100*num5))).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" >
+      <p><b>Profit: {{currency}}{{ (10000/(100-num6)-100).toFixed(1) }}</b></p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq4">
+    <ion-item class="color2">
+      <ion-label >Net price:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num8" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >VAT:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num9" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Gross price: {{currency}}{{ (num8+(num9/100*num8)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Tax amount: {{currency}}{{ (num9/100*num8).toFixed(1) }}</b></p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq5">
+    <ion-item class="color2">
+      <ion-label >Sales tax:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num9" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Net price:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num8" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Gross price: {{currency}}{{ (num8+(num9/100*num8)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Tax amount: {{currency}}{{ (num9/100*num8).toFixed(1) }}</b></p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq6">
+    <ion-item class="color2">
+      <ion-label >Initial balance:</ion-label>
+      <ion-input (ionChange)="calculate()" type="number" [(ngModel)]= "num10" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Annual interest rate:</ion-label>
+      <ion-input (ionChange)="calculate()" type="number" [(ngModel)]= "num11" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Number of years:</ion-label>
+      <ion-input (ionChange)="calculate()" type="number" [(ngModel)]= "num12" placeholder="input number"></ion-input>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Final balance: {{currency}}{{ compound.toFixed(1) }}</b></p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq7">
+    <ion-item class="color2">
+      <ion-label >Growth rate:</ion-label>
+      <ion-input (ionChange)="calculate2()" type="number" [(ngModel)]= "num14" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Number of periods:</ion-label>
+      <ion-input (ionChange)="calculate2()" type="number" [(ngModel)]= "num15" placeholder="input number"></ion-input>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Initial value:</ion-label>
+      <ion-input (ionChange)="calculate2()" type="number" [(ngModel)]= "num13" placeholder="input number"></ion-input>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Final value: {{ growth.toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced7">
+      <p><b>Difference: {{ diff.toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced7">
+      <p><b>Total: {{ total.toFixed(1) }}%</b></p>
+    </ion-item>
+    <ion-item class="color3">
+      <ion-label>Advanced mode</ion-label>
+      <ion-toggle slot="start" [(ngModel)]="advanced7"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-item class="color3">
+    <ion-label >Currency:</ion-label>
+    <ion-select value="$" (ionChange)="currency1($event)">
+      <ion-select-option value="$">USD ($)</ion-select-option>
+      <ion-select-option value="€">EUR (€)</ion-select-option>
+      <ion-select-option value="£">GBP (£)</ion-select-option>
+      <ion-select-option value="¥">JPY (¥)</ion-select-option>
+      <ion-select-option value="$ ">Others ($)</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+</ion-content>

@@ -1,0 +1,146 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar >
+    <ion-title >
+      Daily Percentage
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item class="color11">
+    <ion-text>
+      <p *ngIf="eq1">Tip calculator that allows you to split bill equally with advanced mode</p>
+      <p *ngIf="eq2">Calculate discount price and the amount that you save</p>
+      <p *ngIf="eq3">Compare the price of two products that contain different quantities of the same thing</p>
+    </ion-text>
+  </ion-item>
+  <ion-item-divider class="color5"></ion-item-divider>
+  <ion-list>
+    <ion-radio-group name="equation" value="eq1" (ionChange)="check($event)">
+      <ion-item class="color4">
+        <ion-label >Selection:</ion-label>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>Tip</p>
+        <ion-radio slot="start" value="eq1" ionselect></ion-radio>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>Discount</p>
+        <ion-radio slot="start" value="eq2"></ion-radio>
+      </ion-item>
+  
+      <ion-item class="color3">
+        <p>Price / quantity</p>
+        <ion-radio slot="start" value="eq3"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+    <ion-item-divider class="color5"></ion-item-divider>
+  <ion-list *ngIf="eq1">
+    <ion-item class="color2">
+      <ion-label >Bill:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num1" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Tip:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num2" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color2" *ngIf="advanced1">
+      <ion-label ># of people:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num3" placeholder="input number"></ion-input>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Tip amount: {{currency}}{{ (num2/100*num1).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>Total: {{currency}}{{ (num1+(num2/100*num1)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced1">
+      <p><b>Tip per person: {{currency}}{{ ((num2/100*num1/num3)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced1">
+      <p><b>Total per person: {{currency}}{{ ((num1+(num2/100*num1))/num3).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color3">
+      <ion-label>Advanced mode</ion-label>
+      <ion-toggle slot="start" [(ngModel)]="advanced1"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq2">
+    <ion-item class="color2">
+      <ion-label >Before:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num4" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Discount:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num5" placeholder="input number"></ion-input>
+      <ion-text slot="end">%</ion-text>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>After: {{currency}}{{ (num4-(num5/100*num4)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>You save: {{currency}}{{ (num5/100*num4 ).toFixed(1) }}</b></p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="eq3">
+    <ion-item class="color4">
+      <ion-label>Smaller product</ion-label>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Quantity:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num6" placeholder="input number"></ion-input> 
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Price:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num7" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced2">
+      <p><b>Price/unit: {{currency}}{{ (num7/num6).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color4">
+      <ion-label>Larger product</ion-label>
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Quantity:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num8" placeholder="input number"></ion-input> 
+    </ion-item>
+    <ion-item class="color2">
+      <ion-label >Price:</ion-label>
+      <ion-input type="number" [(ngModel)]= "num9" placeholder="input number"></ion-input>
+      <ion-text slot="end">{{currency}}</ion-text>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced2">
+      <p><b>Price/unit: {{currency}}{{ (num9/num8).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1" *ngIf="advanced2">
+      <p><b>Would have cost: {{currency}}{{ (num8*(num7/num6)).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color1">
+      <p><b>You save: {{currency}}{{ ((num8*(num7/num6))-num9).toFixed(1) }}</b></p>
+    </ion-item>
+    <ion-item class="color3">
+      <ion-label>Advanced mode</ion-label>
+      <ion-toggle slot="start" [(ngModel)]="advanced2"></ion-toggle>
+    </ion-item>
+  </ion-list>
+
+  <ion-item class="color3">
+    <ion-label >Currency:</ion-label>
+    <ion-select value="$" (ionChange)="currency1($event)">
+      <ion-select-option value="$">USD ($)</ion-select-option>
+      <ion-select-option value="€">EUR (€)</ion-select-option>
+      <ion-select-option value="£">GBP (£)</ion-select-option>
+      <ion-select-option value="¥">JPY (¥)</ion-select-option>
+      <ion-select-option value="$ ">Others ($)</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
+</ion-content>
